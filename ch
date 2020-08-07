@@ -233,6 +233,7 @@ main()
   # Special chmod symbol, Special Setuid, Setgid, Sticky Bit
   compute_special "$chmod" "$scs" "$su" "$sg" "$sb"
   clear_tty
+  # Prepend x character y times
   echo "______________________________________________"
   printf "|                 chmod %03d                  |\n" $chmod
   echo "|                 $ucs$gcs$ocs                  |"
@@ -241,9 +242,7 @@ main()
   echo "|  Read    [$ur] |  Read    [$gr] |  Read    [$or] |"
   echo "|  Write   [$uw] |  Write   [$gw] |  Write   [$ow] |"
   echo "|  Execute [$ue] |  Execute [$ge] |  Execute [$oe] |"
-  echo "----------------------------------------------"
-  # Prepend x character y times
-  
+  echo "----------------------------------------------"  
 }
 
 case $1 in
