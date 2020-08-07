@@ -2,7 +2,7 @@
 
 clear_tty()
 {
-  clear >$(tty)
+  clear >"$(tty)"
 }
 
 exit_0()
