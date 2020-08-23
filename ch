@@ -248,11 +248,11 @@ main()
 case $1 in
   '')
     main;;
-  "--version" | "-version" | "-v")
+  "--version" | "-version" | "version" | "-v")
     get_version
     echo "$version"
     exit_0;;
-  "--help" | "-help" | "-h")
+  "--help" | "-help" | "help" |"-h")
     get_help
     echo "$help"
     exit_0;;
