@@ -33,7 +33,16 @@ compute_special()
   # Special permissions
   case $su in
   "x" | "X")
-    chmod=$((chmod+4000));;
+    chmod=$((chmod+4000))
+    
+    case "$(echo $ucs | cut -c 3)" in
+    "x")
+      ucs="$(echo $ucs | cut -c 1-2)"
+      ucs="$ucs""s";;
+    "-")
+      ucs="$(echo $ucs | cut -c 1-2)"
+      ucs="$ucs""S";;
+    esac;;
   '' | ' ')
     su=" "
     chmod=$chmod;;
@@ -43,7 +52,16 @@ compute_special()
 
   case $sg in
   "x" | "X")
-    chmod=$((chmod+2000));;
+    chmod=$((chmod+2000))
+
+    case "$(echo $gcs | cut -c 3)" in
+    "x")
+      gcs="$(echo $gcs | cut -c 1-2)"
+      gcs="$gcs""s";;
+    "-")
+      gcs="$(echo $gcs | cut -c 1-2)"
+      gcs="$gcs""S";;
+    esac;;
   '' | ' ')
     sg=" "
     chmod=$chmod;;
@@ -53,7 +71,16 @@ compute_special()
 
   case $sb in
   "x" | "X")
-    chmod=$((chmod+1000));;
+    chmod=$((chmod+1000))
+
+    case "$(echo $ocs | cut -c 3)" in
+    "x")
+      ocs="$(echo $ocs | cut -c 1-2)"
+      ocs="$ocs""t";;
+    "-")
+      ocs="$(echo $ocs | cut -c 1-2)"
+      ocs="$ocs""T";;
+    esac;;
   '' | ' ')
     sb=" "
     chmod=$chmod;;
@@ -228,14 +255,11 @@ main()
   read -r sg
   printf 'Sticky Bit: '
   read -r sb
-  # TODO: Finish symbolic notation for special permissions.
-  # * Consider adding Special permissions to the left of Owner.
-  # Special chmod symbol, Special Setuid, Setgid, Sticky Bit
-  compute_special "$chmod" "$scs" "$su" "$sg" "$sb"
+  compute_special "$chmod" "$scs" "$su" "$sg" "$sb" "$ucs" $"$gcs" "$ocs"
   clear_tty
   # Prepend x character y times
   echo "______________________________________________"
-  printf "|                 chmod %03d                  |\n" $chmod
+  printf "|                 chmod %03d                 |\n" $chmod
   echo "|                 $ucs$gcs$ocs                  |"
   echo "----------------------------------------------"
   echo "| Owner(u)     | Group(g)     | Other(o)     |"
