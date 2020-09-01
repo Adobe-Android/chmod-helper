@@ -20,12 +20,12 @@ fancy_exit()
 
 get_help()
 {
-  help="Usage: ch\nOptions:\n--help, -help, or -h displays this information.\n--version, -version, or -v displays ch version information.\n\nch does not support any options other than those shown here."
+  help="Usage: ch\nOptions:\n--help, -help, help, or -h displays this information.\n--version, -version, version or -v displays ch version information.\n\nch does not support any options other than those shown here."
 }
 
 get_version()
 {
-  version="ch version 0.1"
+  version="ch version 1.0"
 }
 
 compute_special()
